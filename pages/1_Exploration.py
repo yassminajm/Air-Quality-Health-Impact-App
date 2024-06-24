@@ -61,29 +61,45 @@ def dashboard():
 
 
     # Third plot: contaminants vs HealthImpactClass
+    colors = {
+        'PM10': 'blue',
+        'PM2_5': 'green',
+        'NO2': 'red',
+        'SO2': 'purple',
+        'O3': 'orange'}
+
     def update_plot(class_selected):
-        plt.figure(figsize=(10, 6))
-        
         data_filtered = df[df['HealthImpactClass'] == class_selected]
+        
+        if data_filtered.empty:
+            print(f"No data found for HealthImpactClass '{class_selected}'")
+            return
         
         pollutants = ['PM10', 'PM2_5', 'NO2', 'SO2', 'O3']
         values = data_filtered[pollutants].values[0]
         
-        plt.bar(pollutants, values, color=['blue', 'green', 'red', 'purple', 'orange'])
+        bar_colors = [colors[pollutant] for pollutant in pollutants]
         
-        plt.xlabel('Contaminants')
-        plt.ylabel('Concentration')
-        plt.title(f'Concentration of the Contaminants for HealthImpactClass {class_selected}')
-        plt.ylim(0, max(df[pollutants].max()) * 1.2)  
+        trace = go.Bar(
+            x=pollutants,
+            y=values,
+            marker=dict(color=bar_colors),)
         
-        st.pyplot(plt.gcf())
+        layout = go.Layout(
+            title=f'Concentration of the Contaminants for HealthImpactClass {class_selected}',
+            xaxis=dict(title='Contaminants'),
+            yaxis=dict(title='Concentration'),
+            plot_bgcolor='rgba(0, 0, 0, 0)',
+            paper_bgcolor='rgba(0, 0, 0, 0)',)
+        
+        fig = go.Figure(data=[trace], layout=layout)
+        st.plotly_chart(fig)
 
     class_selected = st.selectbox(
-        'Health Impact Class:',
-        df['HealthImpactClass'].unique())
+            'Health Impact Class:',
+            df['HealthImpactClass'].unique())
 
     update_plot(class_selected)
-
 
     # Fourth plot: HealthImpactClass by HospitalAdmissions and AQI
     aqi = df['AQI'].dropna()
