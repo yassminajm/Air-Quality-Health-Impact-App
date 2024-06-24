@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 import ipywidgets as widgets
-from IPython.display import display
 import plotly.graph_objects as go
 
 
@@ -27,6 +26,7 @@ def dashboard():
              could have a significant impact on the number of respiratory problems the population might experience. Nonetheless, 
              making definitive statements can be risky, so this relationship is not certain. The effect of other indices and 
              pollutants needs to be studied, as will be done later on.""")
+    
     aqi_bins = [0, 50, 100, 150, 200, 300, 500]
     aqi_labels = ['0-50', '51-100', '101-150', '151-200', '201-300', '301-500']
     df['AQI_interval'] = pd.cut(df['AQI'], bins=aqi_bins, labels=aqi_labels, include_lowest=True)
@@ -49,6 +49,10 @@ def dashboard():
 
 
     # Second figure: AQI vs CardiovascularCases
+    st.write("""In the Cardiovascular Cases vs Air Quality Index graph, we observe that the vast majority of individuals have from 
+             3 to 6 cardiovascular cases, having the highest number of instances when the AQI is at the highest intervals in these 
+             cases. This suggests that this is the most common situation, but we cannot assert anything.""")
+
     count_data_C = df.groupby(['AQI_interval', 'CardiovascularCases']).size().reset_index(name='count_C')
 
     fig = px.scatter(count_data_C, x='CardiovascularCases', y='AQI_interval', size='count_C',
@@ -116,6 +120,12 @@ def dashboard():
     update_plot(class_selected)
 
     # Fourth plot: HealthImpactClass by HospitalAdmissions and AQI
+    st.write("""Lastly, the chart correlating the impact class with hospital admissions and the Air Quality Index (AQI) shows an 
+             interesting distribution. Firstly, if we focus solely on class 0 ("very high" impact), we observe the highest 
+             hospital admission values (around 10). Furthermore, when we consider the remaining classes, class 0 has a greater number 
+             of observations that fall into a very high AQI range (around 500) compared to the others. Moving forward, as we select 
+             lower impacts, we observe a decreasing range in the number of hospital admissions, being 4 hospital admissions 
+             the maximum for class 4 ("very low" impact).""")
     aqi = df['AQI'].dropna()
     admissions = df['HospitalAdmissions'].dropna()
     classes = df['HealthImpactClass'].dropna()
