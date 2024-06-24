@@ -17,6 +17,7 @@ def dashboard():
     df['HealthImpactClass'] = df['HealthImpactClass'].astype(int)
     st.title('Exploratory Data Analysis')
     st.write(" ")
+    st.write("Here we have a review of the data aspect.")
     st.dataframe(df)
 
     # First figure: AQI vs RespiratoryCases
