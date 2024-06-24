@@ -11,7 +11,7 @@ st.set_page_config(page_title="Classifier",
 
 def surveyMod():
 
-    st.title("How will the air quality of your city impact your health?")
+    st.title("How will the air quality in your city impact your health?")
     st.write(" ")
     descp = f"""
             The trained classification model will allow you to classify the health impact based on the data you provide in 
