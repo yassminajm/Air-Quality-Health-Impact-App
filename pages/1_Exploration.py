@@ -41,7 +41,7 @@ def dashboard():
 
     fig.update_layout(
         xaxis_title='Respiratory Cases',
-        yaxis_title='Air Quality Indeex (AQI)',
+        yaxis_title='Air Quality Index (AQI)',
         hovermode='closest',
         template='plotly_white')
 
@@ -59,7 +59,7 @@ def dashboard():
 
     fig.update_layout(
         xaxis_title='Cardiovascular Cases',
-        yaxis_title='Air Quality Indeex (AQI)',
+        yaxis_title='Air Quality Index (AQI)',
         hovermode='closest',
         template='plotly_white')
 
@@ -67,6 +67,14 @@ def dashboard():
 
 
     # Third plot: contaminants vs HealthImpactClass
+    st.write("""Next, with the following bar chart, we aim to see if different pollutants might have any effect on the health impact 
+             class. We can observe that with lower impact (i.e., when reaching 4), there is a lower average concentration of the 
+             following pollutants: PM2_5, NO2, SO2, and O3. This is an interesting observation; however, the difference is too small 
+             to be significant. On the other hand, regarding PM10, we see that it is the only pollutant that increases as the impact 
+             decreases. Since they are larger particles, they do not penetrate the respiratory system as easily and they are not as 
+             harmful as the smaller and more irritating ones (i.e., the PM2_5), so it could be that they do not have a significant 
+             impact on the health.""")
+
     colors = {
         'PM10': 'blue',
         'PM2_5': 'green',
