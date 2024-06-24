@@ -97,7 +97,7 @@ def dashboard():
 
     class_selected = st.selectbox(
             'Health Impact Class:',
-            df['HealthImpactClass'].unique())
+            sorted(df['HealthImpactClass'].unique()))
 
     update_plot(class_selected)
 
