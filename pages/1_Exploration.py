@@ -17,10 +17,16 @@ def dashboard():
     df['HealthImpactClass'] = df['HealthImpactClass'].astype(int)
     st.title('Exploratory Data Analysis')
     st.write(" ")
-    st.write("Here we have a review of the data aspect.")
+    st.write("First of all, let's take a look at the aspect of the data:")
     st.dataframe(df)
 
     # First figure: AQI vs RespiratoryCases
+    st.write("""Regarding the graphs, in the Respiratory Cases vs Air Quality Index graph, we can see that respiratory cases are 
+             mostly around 10 for all air quality index intervals. However, as the air quality index increases, the number of 
+             instances with around 10 respiratory cases also increases. This observation makes sense, as the degree of air pollution 
+             could have a significant impact on the number of respiratory problems the population might experience. Nonetheless, 
+             making definitive statements can be risky, so this relationship is not certain. The effect of other indices and 
+             pollutants needs to be studied, as will be done later on.""")
     aqi_bins = [0, 50, 100, 150, 200, 300, 500]
     aqi_labels = ['0-50', '51-100', '101-150', '151-200', '201-300', '301-500']
     df['AQI_interval'] = pd.cut(df['AQI'], bins=aqi_bins, labels=aqi_labels, include_lowest=True)
@@ -76,7 +82,7 @@ def dashboard():
             return
         
         pollutants = ['PM10', 'PM2_5', 'NO2', 'SO2', 'O3']
-        values = data_filtered[pollutants].values[0]
+        values = data_filtered[pollutants].mean()
         
         bar_colors = [colors[pollutant] for pollutant in pollutants]
         
@@ -86,7 +92,7 @@ def dashboard():
             marker=dict(color=bar_colors),)
         
         layout = go.Layout(
-            title=f'Concentration of the Contaminants for HealthImpactClass {class_selected}',
+            title=f'Average of the Concentration of the Contaminants for HealthImpactClass {class_selected}',
             xaxis=dict(title='Contaminants'),
             yaxis=dict(title='Concentration'),
             plot_bgcolor='rgba(0, 0, 0, 0)',
