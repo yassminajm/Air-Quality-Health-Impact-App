@@ -1,0 +1,14 @@
+streamlit==1.34.0
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.8.4
+plotly==5.0
+ipywidgets
+joblib
+networkx
+osmnx
+openpyxl
+scikit-learn==1.2.2
+markdown
+xgboost==2.1.0
+
