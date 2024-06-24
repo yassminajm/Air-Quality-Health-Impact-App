@@ -33,18 +33,18 @@ def surveyMod():
     
         # Air Quality Data
         st.header("Air Quality Metrics")
-        aqi = st.number_input("AQI: Air Quality Index", min_value=0.0, format="%.1f")
-        pm10 = st.number_input("PM10: Particulate Matter <10μm (μg/m³)", min_value=0.0, format="%.1f")
-        pm2_5 = st.number_input("PM2.5: Particulate Matter <2.5μm (μg/m³)", min_value=0.0, format="%.1f")
-        no2 = st.number_input("NO2: Nitrogen Dioxide (ppb)", min_value=0.0, format="%.1f")
-        so2 = st.number_input("SO2: Sulfur Dioxide (ppb)", min_value=0.0, format="%.1f")
-        o3 = st.number_input("O3: Ozone (ppb)", min_value=0.0, format="%.1f")
+        aqi = st.number_input("AQI: Air Quality Index", min_value=0.0, step=0.1, format="%.1f")
+        pm10 = st.number_input("PM10: Particulate Matter <10μm (μg/m³)", min_value=0.0, step=0.1, format="%.1f")
+        pm2_5 = st.number_input("PM2.5: Particulate Matter <2.5μm (μg/m³)", min_value=0.0, step=0.1, format="%.1f")
+        no2 = st.number_input("NO2: Nitrogen Dioxide (ppb)", min_value=0.0, step=0.1, format="%.1f")
+        so2 = st.number_input("SO2: Sulfur Dioxide (ppb)", min_value=0.0, step=0.1, format="%.1f")
+        o3 = st.number_input("O3: Ozone (ppb)", min_value=0.0, step=0.1, format="%.1f")
 
         # Weather Conditions
         st.header("Weather Conditions")
-        temperature = st.number_input("Temperature (°C)", min_value=-50.0, max_value=50.0, format="%.1f")
-        humidity = st.number_input("Humidity (%)", min_value=0.0, max_value=100.0, format="%.1f")
-        wind_speed = st.number_input("Wind Speed (m/s)", min_value=0.0, format="%.1f")
+        temperature = st.number_input("Temperature (°C)", min_value=-50.0, max_value=50.0, step=0.1, format="%.1f")
+        humidity = st.number_input("Humidity (%)", min_value=0.0, max_value=100.0, step=0.1, format="%.1f")
+        wind_speed = st.number_input("Wind Speed (m/s)", min_value=0.0, step=0.1, format="%.1f")
 
         # Health Impact Metrics
         st.header("Health Impact Metrics")
