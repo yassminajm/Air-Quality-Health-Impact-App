@@ -8,9 +8,7 @@ joblib
 networkx
 osmnx
 openpyxl
-pickle
 scikit-learn==1.2.2
 markdown
 xgboost==2.1.0
-ipython
 
